@@ -1,0 +1,75 @@
+package com.example.myapplication;
+
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * StorageHelper.java — помощник для сохранения/загрузки данных.
+ * Аналогия: блокнот на холодильнике — записали, закрыли приложение,
+ * открыли снова — данные на месте!
+ * Использует SharedPreferences + JSON.
+ */
+public class StorageHelper {
+
+    private static final String PREFS_NAME = "itcube_organizer_prefs";
+    private static final String KEY_LESSONS = "lessons_list";
+
+    // СОХРАНЯЕТ список занятий в «блокнот»
+    public static void saveLessons(Context context, List<Lesson> lessons) {
+        SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        JSONArray jsonArray = new JSONArray();
+        for (Lesson lesson : lessons) {
+            try {
+                JSONObject obj = new JSONObject();
+                obj.put("name", lesson.getName());
+                obj.put("direction", lesson.getDirection());
+                obj.put("day", lesson.getDay());
+                obj.put("time", lesson.getTime());
+                obj.put("room", lesson.getRoom());
+                obj.put("note", lesson.getNote());
+                jsonArray.put(obj);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        editor.putString(KEY_LESSONS, jsonArray.toString());
+        editor.apply(); // Сохраняем в фоне
+    }
+
+    // ЗАГРУЖАЕТ список занятий из «блокнота»
+    public static List<Lesson> loadLessons(Context context) {
+        List<Lesson> lessons = new ArrayList<>();
+        SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        String jsonString = prefs.getString(KEY_LESSONS, "");
+
+        if (!jsonString.isEmpty()) {
+            try {
+                JSONArray jsonArray = new JSONArray(jsonString);
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject obj = jsonArray.getJSONObject(i);
+                    Lesson lesson = new Lesson(
+                            obj.getString("name"),
+                            obj.getString("direction")
+                    );
+                    lesson.setDay(obj.optString("day", ""));
+                    lesson.setTime(obj.optString("time", ""));
+                    lesson.setRoom(obj.optString("room", ""));
+                    lesson.setNote(obj.optString("note", ""));
+                    lessons.add(lesson);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return lessons;
+    }
+}
