@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- colors.xml — палитра цветов. Меняешь здесь — меняется везде! -->
+<resources>
+    <color name="primary">#1565C0</color>         <!-- Синий IT-Куба -->
+    <color name="primary_dark">#0D47A1</color>     <!-- Тёмный синий -->
+    <color name="accent">#FF6F00</color>           <!-- Оранжевый акцент -->
+    <color name="background">#F5F5F5</color>       <!-- Светло-серый фон -->
+    <color name="card_background">#FFFFFF</color>  <!-- Белый фон карточки -->
+    <color name="text_primary">#212121</color>     <!-- Основной текст -->
+    <color name="text_secondary">#757575</color>   <!-- Второстепенный текст -->
+    <color name="white">#FFFFFF</color>
+</resources>
