@@ -1,0 +1,88 @@
+package com.example.myapplication;
+
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.*;
+import androidx.appcompat.app.AppCompatActivity;
+import java.util.List;
+
+/**
+ * DetailActivity.java — мозг экрана деталей.
+ * Аналогия: открыли одну карточку и видим всё подробно:
+ * день, время, кабинет, заметки. Можно редактировать и удалять.
+ */
+public class DetailActivity extends AppCompatActivity {
+
+    private TextView tvDetailName, tvDetailDirection;
+    private EditText etDay, etTime, etRoom, etNote;
+    private Button btnSave, btnDelete;
+    private List<Lesson> lessonList;
+    private int position;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_detail);
+
+        tvDetailName = findViewById(R.id.tvDetailName);
+        tvDetailDirection = findViewById(R.id.tvDetailDirection);
+        etDay = findViewById(R.id.etDay);
+        etTime = findViewById(R.id.etTime);
+        etRoom = findViewById(R.id.etRoom);
+        etNote = findViewById(R.id.etNote);
+        btnSave = findViewById(R.id.btnSave);
+        btnDelete = findViewById(R.id.btnDelete);
+
+        // Получаем номер занятия из «записки» (Intent)
+        position = getIntent().getIntExtra("lesson_position", 0);
+
+        // Загружаем список и заполняем экран
+        lessonList = StorageHelper.loadLessons(this);
+        if (position >= 0 && position < lessonList.size()) {
+            Lesson lesson = lessonList.get(position);
+            tvDetailName.setText(lesson.getName());
+            tvDetailDirection.setText(lesson.getDirection());
+            etDay.setText(lesson.getDay());
+            etTime.setText(lesson.getTime());
+            etRoom.setText(lesson.getRoom());
+            etNote.setText(lesson.getNote());
+        }
+
+        // Кнопка «Сохранить»
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { saveLesson(); }
+        });
+
+        // Кнопка «Удалить»
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { deleteLesson(); }
+        });
+    }
+
+    private void saveLesson() {
+        if (position >= 0 && position < lessonList.size()) {
+            Lesson lesson = lessonList.get(position);
+            lesson.setDay(etDay.getText().toString().trim());
+            lesson.setTime(etTime.getText().toString().trim());
+            lesson.setRoom(etRoom.getText().toString().trim());
+            lesson.setNote(etNote.getText().toString().trim());
+            StorageHelper.saveLessons(this, lessonList);
+            Toast.makeText(this, R.string.msg_saved, Toast.LENGTH_SHORT).show();
+            setResult(RESULT_OK);
+            finish(); // Возвращаемся на главный экран
+        }
+    }
+
+    private void deleteLesson() {
+        if (position >= 0 && position < lessonList.size()) {
+            lessonList.remove(position);
+            StorageHelper.saveLessons(this, lessonList);
+            Toast.makeText(this, R.string.msg_deleted, Toast.LENGTH_SHORT).show();
+            setResult(RESULT_OK);
+            finish();
+        }
+    }
+}
