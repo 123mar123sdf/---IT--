@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Экран деталей одного занятия -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/title_detail"
+            android:textSize="24sp"
+            android:textColor="@color/primary"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:paddingBottom="16dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/rounded_background"
+            android:elevation="4dp"
+            android:padding="16dp">
+
+            <!-- Название (только чтение) -->
+            <TextView
+                android:id="@+id/tvDetailName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="@color/text_primary"
+                android:textStyle="bold"
+                android:paddingBottom="4dp" />
+
+            <!-- Направление -->
+            <TextView
+                android:id="@+id/tvDetailDirection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/accent"
+                android:paddingBottom="16dp" />
+
+            <EditText
+                android:id="@+id/etDay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_day"
+                android:inputType="text"
+                android:textSize="16sp"
+                android:padding="12dp"
+                android:layout_marginBottom="8dp" />
+
+            <EditText
+                android:id="@+id/etTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_time"
+                android:inputType="text"
+                android:textSize="16sp"
+                android:padding="12dp"
+                android:layout_marginBottom="8dp" />
+
+            <EditText
+                android:id="@+id/etRoom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_room"
+                android:inputType="text"
+                android:textSize="16sp"
+                android:padding="12dp"
+                android:layout_marginBottom="8dp" />
+
+            <EditText
+                android:id="@+id/etNote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_note"
+                android:inputType="textMultiLine"
+                android:minLines="3"
+                android:gravity="top"
+                android:textSize="16sp"
+                android:padding="12dp"
+                android:layout_marginBottom="16dp" />
+
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_save"
+                android:textSize="16sp"
+                android:backgroundTint="@color/primary"
+                android:layout_marginBottom="8dp" />
+
+            <Button
+                android:id="@+id/btnDelete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_delete"
+                android:textSize="16sp"
+                android:backgroundTint="#D32F2F" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
