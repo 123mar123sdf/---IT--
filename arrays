@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- arrays.xml — список направлений для выпадающего меню (Spinner).
+     Добавь сюда свои кружки и секции! -->
+<resources>
+    <string-array name="directions_array">
+        <item>Мобильная разработка</item>
+        <item>Программирование на Python</item>
+        <item>Робототехника</item>
+        <item>Кибергигиена</item>
+        <item>VR/AR-разработка</item>
+        <item>Системное администрирование</item>
+        <item>Другое</item>
+    </string-array>
+</resources>
