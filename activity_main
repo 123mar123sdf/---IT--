@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Главный экран: заголовок, поле ввода, Spinner, кнопка, список занятий -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background"
+    android:padding="16dp">
+
+    <!-- Заголовок приложения -->
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title_main"
+        android:textSize="24sp"
+        android:textColor="@color/primary"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:paddingBottom="16dp" />
+
+    <!-- Панель добавления занятия -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/rounded_background"
+        android:elevation="4dp"
+        android:padding="12dp"
+        android:layout_marginBottom="12dp">
+
+        <!-- Поле ввода названия -->
+        <EditText
+            android:id="@+id/etLessonName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_lesson_name"
+            android:inputType="text"
+            android:textSize="16sp"
+            android:padding="12dp"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Выпадающий список направлений -->
+        <Spinner
+            android:id="@+id/spinnerDirection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/directions_array"
+            android:prompt="@string/spinner_prompt"
+            android:padding="8dp"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Кнопка «Добавить» -->
+        <Button
+            android:id="@+id/btnAdd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_add"
+            android:textSize="16sp"
+            android:backgroundTint="@color/primary" />
+    </LinearLayout>
+
+    <!-- Сообщение «Пока нет занятий» -->
+    <TextView
+        android:id="@+id/tvEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/empty_list"
+        android:textSize="16sp"
+        android:textColor="@color/text_secondary"
+        android:gravity="center"
+        android:padding="32dp" />
+
+    <!-- Список занятий -->
+    <ListView
+        android:id="@+id/lvLessons"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="8dp" />
+</LinearLayout>
