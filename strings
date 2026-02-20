@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- strings.xml — все надписи в одном месте. Удобно менять и переводить. -->
+<resources>
+    <string name="app_name">Органайзер IT-Куба</string>
+    <string name="title_main">Мои занятия в IT-Кубе</string>
+    <string name="hint_lesson_name">Название занятия</string>
+    <string name="btn_add">Добавить</string>
+    <string name="empty_list">Пока нет занятий.\nНажми «Добавить», чтобы начать!</string>
+    <string name="error_empty_name">Введите название занятия</string>
+    <string name="title_detail">Детали занятия</string>
+    <string name="hint_day">День недели (например: Понедельник)</string>
+    <string name="hint_time">Время (например: 15:00–16:30)</string>
+    <string name="hint_room">Кабинет / Педагог</string>
+    <string name="hint_note">Заметка (что принести, домашнее задание…)</string>
+    <string name="btn_save">Сохранить</string>
+    <string name="btn_delete">Удалить занятие</string>
+    <string name="msg_saved">Занятие сохранено ✓</string>
+    <string name="msg_deleted">Занятие удалено</string>
+    <string name="spinner_prompt">Выбери направление</string>
+</resources>
