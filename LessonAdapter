@@ -1,0 +1,59 @@
+package com.example.myapplication;
+
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.TextView;
+import java.util.List;
+
+/**
+ * LessonAdapter.java — «переводчик» между данными и экраном.
+ * Аналогия: берёт карточки из стопки и красиво развешивает
+ * их на доске объявлений (ListView).
+ */
+public class LessonAdapter extends BaseAdapter {
+
+    private Context context;
+    private List<Lesson> lessons;
+    private LayoutInflater inflater;
+
+    public LessonAdapter(Context context, List<Lesson> lessons) {
+        this.context = context;
+        this.lessons = lessons;
+        this.inflater = LayoutInflater.from(context);
+    }
+
+    @Override public int getCount()              { return lessons.size(); }
+    @Override public Object getItem(int pos)     { return lessons.get(pos); }
+    @Override public long getItemId(int pos)     { return pos; }
+
+    // Главный метод: создаёт и заполняет карточку для каждого занятия
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        if (convertView == null) {
+            convertView = inflater.inflate(R.layout.item_lesson, parent, false);
+        }
+
+        Lesson lesson = lessons.get(position);
+
+        TextView tvName = convertView.findViewById(R.id.tvItemName);
+        TextView tvDirection = convertView.findViewById(R.id.tvItemDirection);
+        TextView tvSchedule = convertView.findViewById(R.id.tvItemSchedule);
+
+        tvName.setText(lesson.getName());
+        tvDirection.setText(lesson.getDirection());
+
+        String schedule = lesson.getScheduleText();
+        if (!schedule.isEmpty()) {
+            tvSchedule.setText(schedule);
+            tvSchedule.setVisibility(View.VISIBLE);
+        } else {
+            tvSchedule.setVisibility(View.GONE);
+        }
+
+        return convertView;
+    }
+}
