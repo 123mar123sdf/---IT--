@@ -1,0 +1,46 @@
+package com.example.myapplication;
+
+public class Lesson {
+
+    private String name;        // Название занятия
+    private String direction;   // Направление IT-Куба
+    private String day;         // День недели
+    private String time;        // Время
+    private String room;        // Кабинет / Педагог
+    private String note;        // Заметка
+
+    // Конструктор — создаём новую «карточку» с названием и направлением
+    public Lesson(String name, String direction) {
+        this.name = name;
+        this.direction = direction;
+        this.day = "";
+        this.time = "";
+        this.room = "";
+        this.note = "";
+    }
+
+    // Геттеры — ЧИТАЕМ данные с карточки
+    public String getName()      { return name; }
+    public String getDirection() { return direction; }
+    public String getDay()       { return day; }
+    public String getTime()      { return time; }
+    public String getRoom()      { return room; }
+    public String getNote()      { return note; }
+
+    // Сеттеры — ЗАПИСЫВАЕМ данные на карточку
+    public void setDay(String day)   { this.day = day; }
+    public void setTime(String time) { this.time = time; }
+    public void setRoom(String room) { this.room = room; }
+    public void setNote(String note) { this.note = note; }
+
+    // Собирает строку расписания: «Понедельник, 15:00–16:30»
+    public String getScheduleText() {
+        StringBuilder sb = new StringBuilder();
+        if (day != null && !day.isEmpty()) sb.append(day);
+        if (time != null && !time.isEmpty()) {
+            if (sb.length() > 0) sb.append(", ");
+            sb.append(time);
+        }
+        return sb.toString();
+    }
+}
